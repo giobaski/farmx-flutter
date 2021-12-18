@@ -40,8 +40,7 @@ class LotDetailsPage extends StatelessWidget {
                           decoration: BoxDecoration(
                               color: Colors.amber
                           ),
-                          child: Image.network(
-                              i,
+                          child: Image.network(i,
                               fit: BoxFit.cover
                           ),
                       );
@@ -104,7 +103,8 @@ class LotDetailsPage extends StatelessWidget {
 
               SizedBox(height: 20),
 
-              _tabSection(context),
+
+              // _tabSection(context),
 
             ]
         ),

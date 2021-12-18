@@ -18,45 +18,15 @@ class LotService {
     print('Response body: ${response.body}');
 
 
-    if(response.statusCode == 200){
+    if (response.statusCode == 200) {
       final jsonResponse = jsonDecode(response.body) as List;
       print("Json Response List<Lot> length: ${jsonResponse.length}");
 
       var list = jsonResponse.map((value) => Lot.fromJson(value)).toList();
       return list;
-    }else {
+    } else {
       throw Exception("Failed to fetch lots");
     }
-
-}
-
-
-
-// you need token to send request
- static Future<String> placeOrder(int lotId, int amount) async {
-    var url = "$BASE_URL/lots/$lotId/orders/$amount";
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    var token = prefs.getString("token");
-
-    var respone = await http.post(Uri.parse(url),
-    headers: {
-      'Content-type': 'application/json',
-      'Authorization': 'Bearer $token'
-    }
-    );
-
-    if (respone.statusCode == 201){
-      print(respone.body);
-      return respone.body;
-    } else {
-      throw Exception("Failed to place an order");
-    }
-
-
-
- }
-
-// getLotsByUsername()
-
+  }
 
 }
