@@ -17,10 +17,10 @@ class CustomDrawer extends StatelessWidget {
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: [
-          Text(username),
+          // Text(username),
           UserAccountsDrawerHeader(
             accountName: Text(username),
-            accountEmail: Text(email.isNotEmpty ? email : "email@placeholder"),
+            accountEmail: Text(email.isNotEmpty ? email : "email@placeholder.com"),
             currentAccountPicture: CircleAvatar(
               backgroundColor: Colors.orange,
               child: Text("A", style: TextStyle(fontSize: 40.0),), //TODO: add image

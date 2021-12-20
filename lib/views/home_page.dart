@@ -29,19 +29,20 @@ class _HomePageState extends State<HomePage> {
 
   void loginStatus() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    if (sharedPreferences.getString("token") == null) {
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
-          (Route<dynamic> route) => false);
-    } else {
+    if (sharedPreferences.getString("token") != null) {
       username = sharedPreferences.getString("username");
       email = sharedPreferences.getString("email");
+    } else {
+      // Navigator.of(context).pushAndRemoveUntil(
+      //     MaterialPageRoute(builder: (BuildContext context) => LoginPage()),
+      //     (Route<dynamic> route) => false);
     }
   }
 
   @override
   void initState() {
     super.initState();
+
     //if user hasn't the token in SP, redirect to the login page!
     loginStatus();
 
@@ -71,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                 },
               )
             ]),
-        drawer: CustomDrawer(username: username ?? "", email: email ?? ""),
+        drawer: CustomDrawer(username: username ?? "Guest User", email: email ?? "guest@gmail.com"),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -85,12 +86,6 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.teal,
                 ),
                 child: Column(children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: username != null
-                        ? Text("Hello $username")
-                        : Text("Hello Guest"),
-                  ),
                   Padding(
                       padding: const EdgeInsets.all(22.0),
                       child: RichText(
@@ -111,6 +106,21 @@ class _HomePageState extends State<HomePage> {
                       //     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white)
                       // ),
                       ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: username != null
+                        ? Text("Hello $username".toUpperCase(),
+                              style: TextStyle(color: Colors.white),)
+                        : SizedBox(
+                      height: 18,
+                      child: ElevatedButton(
+                        // style: style,
+                        onPressed: () {Navigator.pushNamed(context, "/register");},
+                        child: const Text('Sign Up', style: TextStyle(fontWeight: FontWeight.bold),),
+                      ),
+                    ),
+                    // Text("Hello Guest"),
+                  ),
                 ]),
               ),
 

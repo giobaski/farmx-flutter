@@ -15,7 +15,8 @@ class CustomBuyButton extends StatelessWidget {
       return await OrderService.placeOrder(lot.id, amount);
     } on Exception catch (e) {
       print(e);
-      return "errrrrrrrrrrrrr from placeOrder() in customBuy";
+      // return "errrrrrrrrrrrrr from placeOrder() in customBuy ";
+      return e.toString();
     }
   }
 
@@ -47,7 +48,7 @@ class CustomBuyButton extends StatelessWidget {
               if (amount != null && amount > 0) {
                 var res = await placeOrder(lot.id, amount);
                 // if(res !=null)
-                displayDialog(context, "Success!", res);
+                displayDialog(context, "Message!", res);
               } else {
                 displayDialog(context, "An Error Occurred",
                     "The amount should be more then 0");

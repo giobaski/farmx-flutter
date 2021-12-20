@@ -11,6 +11,8 @@ class OrderService {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString("token");
 
+    if(token == null) throw Exception("You aren't authorized to place an order, please sign in and try again!");
+
     var respone = await http.post(Uri.parse(url), headers: {
       'Content-type': 'application/json',
       'Authorization': 'Bearer $token'
