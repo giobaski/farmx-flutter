@@ -112,11 +112,11 @@ class _HomePageState extends State<HomePage> {
                         ? Text("Hello $username".toUpperCase(),
                               style: TextStyle(color: Colors.white),)
                         : SizedBox(
-                      height: 18,
+                      height: 20,
                       child: ElevatedButton(
-                        // style: style,
-                        onPressed: () {Navigator.pushNamed(context, "/register");},
-                        child: const Text('Sign Up', style: TextStyle(fontWeight: FontWeight.bold),),
+                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.red)),
+                        onPressed: () {Navigator.pushNamed(context, "/login");},
+                        child: const Text('Join', style: TextStyle(fontWeight: FontWeight.bold),),
                       ),
                     ),
                     // Text("Hello Guest"),
